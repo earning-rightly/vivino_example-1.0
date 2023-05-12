@@ -5,6 +5,16 @@ class TopListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      children: [
+        Container(
+            width: 500,
+            height: 250,
+            child: Image.asset(
+              'assets/top_list_page_image/wines.jpg',
+              fit: BoxFit.contain,
+            )),
+      ],
+    );
   }
 }
