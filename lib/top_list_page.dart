@@ -54,10 +54,30 @@ class _TopChartsInContryState extends State<TopChartsInContry> {
         ListTile(
           title: Text('Top chart in 대한민국'),
         ),
-        Expanded(
-            child: ListView.builder(
-                itemCount: topListData.length, itemBuilder: (c, i) {})),
+        Expanded(child: showTopListContent(topListData: topListData)),
       ],
     );
+  }
+}
+
+class showTopListContent extends StatefulWidget {
+  const showTopListContent({Key? key, required this.topListData})
+      : super(key: key);
+  final List<Map<String, dynamic>> topListData;
+
+  @override
+  State<showTopListContent> createState() => _showTopListContentState();
+}
+
+class _showTopListContentState extends State<showTopListContent> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: widget.topListData.length, // 유저가 사용한 스크롤 정보를 저장한다
+        itemBuilder: (c, i) {
+          return ListTile(
+              leading: widget.topListData[i]['icone'],
+              title: Text('${widget.topListData[i]['title']}'));
+        });
   }
 }
