@@ -52,10 +52,36 @@ class _TopChartsInContryState extends State<TopChartsInContry> {
     return Column(
       children: [
         ListTile(
-          title: Text('Top chart in 대한민국'),
+          title: ShowTitle(),
         ),
         Expanded(child: showTopListContent(topListData: topListData)),
       ],
+    );
+  }
+}
+
+class ShowTitle extends StatelessWidget {
+  const ShowTitle({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text.rich(
+      TextSpan(
+        children: <TextSpan>[
+          TextSpan(
+            text: 'Top Charts ',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+          TextSpan(
+            text: 'in',
+            style: TextStyle(color: Colors.blue, fontSize: 20),
+          ),
+          TextSpan(
+            text: ' 대한민국',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -73,7 +99,7 @@ class _showTopListContentState extends State<showTopListContent> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: widget.topListData.length, // 유저가 사용한 스크롤 정보를 저장한다
+        itemCount: widget.topListData.length, // 유저가 V사용한 스크롤 정보를 저장한다
         itemBuilder: (c, i) {
           return ListTile(
               leading: widget.topListData[i]['icone'],
