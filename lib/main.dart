@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:vivino_demo/friends_page.dart';
-import 'package:vivino_demo/myprofile_page.dart';
-import 'package:vivino_demo/top_list_page.dart';
-import 'style/standardStyle.dart' as standardStyle;
+import './screens/friends/friends_page.dart';
+import './screens/myprofile/myprofile_page.dart';
+import './screens/search/search_page.dart';
 
-import './search_page.dart';
+import './screens/top_list/top_list_page.dart';
+
+import 'style/standardStyle.dart' as standardStyle;
 
 void main() {
   runApp(MaterialApp(
-      theme: standardStyle.them,
-      home:homePage(),
-  )
-  );
+    theme: standardStyle.them,
+    home: homePage(),
+  ));
 }
 
 class homePage extends StatelessWidget {
@@ -19,7 +19,7 @@ class homePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       theme: standardStyle.them,
       home: DefaultTabController(
         length: 4,
@@ -28,11 +28,11 @@ class homePage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: Icon(Icons.notifications),
-                onPressed: (){},
+                onPressed: () {},
               ),
               IconButton(
                 icon: Icon(Icons.add_box_outlined),
-                onPressed: (){},
+                onPressed: () {},
               ),
             ],
             bottom: const TabBar(
@@ -48,7 +48,6 @@ class homePage extends StatelessWidget {
                 ),
                 Tab(
                   icon: Icon(Icons.present_to_all_outlined),
-
                 ),
               ],
             ),
@@ -60,8 +59,6 @@ class homePage extends StatelessWidget {
               SearchPage(),
               FriendsPage(),
               MyPrpfilePage()
-
-
             ],
           ),
         ),
