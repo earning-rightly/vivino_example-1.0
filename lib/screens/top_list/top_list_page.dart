@@ -99,7 +99,7 @@ class _showTopListContentState extends State<showTopListContent> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: widget.topListData.length, // 유저가 V사용한 스크롤 정보를 저장한다
+        itemCount: widget.topListData.length, // 유저가 사용한 스크롤 정보를 저장한다
         itemBuilder: (c, i) {
           return ListTile(
               leading: widget.topListData[i]['icone'],
