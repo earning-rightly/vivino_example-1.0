@@ -15,6 +15,8 @@ class _SearchPageState extends State<SearchPage> {
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return SearchBar();
+          } else {
+            return Container();
           }
         });
   }
