@@ -41,6 +41,11 @@ class _SearchBarState extends State<SearchBar> {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         // Use a Material design search bar
         child: TextField(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (c) {
+              return DetailSearchPage();
+            }));
+          },
           controller: _searchController,
           decoration: InputDecoration(
             hintText: 'Search any wine',
@@ -63,5 +68,14 @@ class _SearchBarState extends State<SearchBar> {
         ),
       ),
     );
+  }
+}
+
+class DetailSearchPage extends StatelessWidget {
+  const DetailSearchPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
