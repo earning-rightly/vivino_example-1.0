@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import './detaillsearch/detail_search_page.dart';
+import 'package:vivino_demo/style/standardStyle.dart';
+import './search_page_content.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
-}
-
-class _SearchPageState extends State<SearchPage> {
-  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return SearchBar();
-          } else {
-            return Container();
-          }
-        });
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              if (index == 0) {
+                return SearchBar();
+              }
+              if (index == 1) {
+                return WinesType();
+              } else {
+                return Container();
+              }
+            },
+            childCount: 4,
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -69,5 +76,77 @@ class _SearchBarState extends State<SearchBar> {
         ),
       ),
     );
+  }
+}
+
+class WinesType extends StatelessWidget {
+  WinesType({super.key});
+
+  final int contanerWidth = 400;
+  final SearchStyle searchStyle = SearchStyle();
+  static var datum = [
+    {
+      'name': 'Red',
+      'picture': 'assets/search_page/wines type/red.jpg',
+      'color': const Color(0xF4EF4856)
+    },
+    {
+      'name': 'White',
+      'picture': 'assets/search_page/wines type/white.jpg',
+      'color': const Color(0xFFDAD8D8)
+    },
+    {
+      'name': 'Sparking',
+      'picture': 'assets/search_page/wines type/sparkling.jpg',
+      'color': const Color(0xFFF8E4E4)
+    },
+    {
+      'name': 'Rose',
+      'picture': 'assets/search_page/wines type/rose.jpg',
+      'color': const Color(0xA2CC6A72)
+    },
+    {
+      'name': 'Dessert',
+      'picture': 'assets/search_page/wines type/dessert.jpg',
+      'color': const Color(0xA2CC6A72)
+    },
+    {
+      'name': 'Fortified',
+      'picture': 'assets/search_page/wines type/fortified.jpg',
+      'color': const Color(0xA2CC6A72)
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      TextButton(
+          onPressed: () {},
+          child: Text(
+            "Shop wines by type",
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          )),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          Container(
+            child: Column(
+              children: [
+                for (var data in datum.take(3))
+                  buildScrollToIndexes(data['picture'].toString(),
+                      data['name'].toString(), data['color'] as Color),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(children: [
+              for (var data in datum.skip(3))
+                buildScrollToIndexes(data['picture'].toString(),
+                    data['name'].toString(), data['color'] as Color),
+            ]),
+          )
+        ]),
+      )
+    ]);
   }
 }
