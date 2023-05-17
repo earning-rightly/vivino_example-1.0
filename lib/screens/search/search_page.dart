@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './detaillsearch/detail_search_page.dart';
 import 'package:vivino_demo/style/standardStyle.dart';
+import './search_page_content.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -83,6 +84,38 @@ class WinesType extends StatelessWidget {
 
   final int contanerWidth = 400;
   final SearchStyle searchStyle = SearchStyle();
+  static var datum = [
+    {
+      'name': 'Red',
+      'picture': 'assets/search_page/wines type/red.jpg',
+      'color': const Color(0xF4EF4856)
+    },
+    {
+      'name': 'White',
+      'picture': 'assets/search_page/wines type/white.jpg',
+      'color': const Color(0xFFDAD8D8)
+    },
+    {
+      'name': 'Sparking',
+      'picture': 'assets/search_page/wines type/sparkling.jpg',
+      'color': const Color(0xFFF8E4E4)
+    },
+    {
+      'name': 'Rose',
+      'picture': 'assets/search_page/wines type/rose.jpg',
+      'color': const Color(0xA2CC6A72)
+    },
+    {
+      'name': 'Dessert',
+      'picture': 'assets/search_page/wines type/dessert.jpg',
+      'color': const Color(0xA2CC6A72)
+    },
+    {
+      'name': 'Fortified',
+      'picture': 'assets/search_page/wines type/fortified.jpg',
+      'color': const Color(0xA2CC6A72)
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -95,46 +128,24 @@ class WinesType extends StatelessWidget {
           )),
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Column(children: [
-              Container(
-                color: Colors.pink,
-                width: 450,
-                height: 100,
-              ),
-              Container(
-                color: Colors.red,
-                width: 450,
-                height: 100,
-              ),
-              Container(
-                color: Colors.blue,
-                width: 450,
-                height: 100,
-              )
-            ]),
-            Column(
+        child: Row(children: [
+          Container(
+            child: Column(
               children: [
-                Container(
-                  color: Colors.green,
-                  width: 450,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.yellow,
-                  width: 450,
-                  height: 100,
-                ),
-                Container(
-                  color: Colors.red,
-                  width: 450,
-                  height: 100,
-                )
+                for (var data in datum.take(3))
+                  buildScrollToIndexes(data['picture'].toString(),
+                      data['name'].toString(), data['color'] as Color),
               ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            child: Column(children: [
+              for (var data in datum.skip(3))
+                buildScrollToIndexes(data['picture'].toString(),
+                    data['name'].toString(), data['color'] as Color),
+            ]),
+          )
+        ]),
       )
     ]);
   }
