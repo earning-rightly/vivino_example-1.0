@@ -18,7 +18,10 @@ class SearchPage extends StatelessWidget {
               }
               if (index == 1) {
                 return WinesType();
-              } else {
+              }
+              if (index == 2)
+                return OurBestOffer();
+              else {
                 return Container();
               }
             },
@@ -153,6 +156,42 @@ class WinesType extends StatelessWidget {
           ]),
         )
       ]),
+    );
+  }
+}
+
+class OurBestOffer extends StatelessWidget {
+  const OurBestOffer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400,
+      margin: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.black, width: 2))),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            primary: Colors.white60,
+            onPrimary: Colors.black,
+            textStyle: TextStyle(fontSize: 23),
+          ),
+          onPressed: () {},
+          child: Row(
+            children: [
+              Image.asset(
+                'assets/search_page/our best offer/shop our best offer.png',
+                width: 100,
+                height: 100,
+              ),
+              SizedBox(width: 10),
+              Text('Shop our best offers')
+            ],
+          )),
     );
   }
 }
