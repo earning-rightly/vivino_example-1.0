@@ -119,34 +119,40 @@ class WinesType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      TextButton(
-          onPressed: () {},
-          child: Text(
-            "Shop wines by type",
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          )),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          Container(
-            child: Column(
-              children: [
-                for (var data in datum.take(3))
+    return Container(
+      margin: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.black, width: 2))),
+      child: Column(children: [
+        TextButton(
+            onPressed: () {},
+            child: Text(
+              "Shop wines by type",
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            )),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: [
+            Container(
+              child: Column(
+                children: [
+                  for (var data in datum.take(3))
+                    buildScrollToIndexes(data['picture'].toString(),
+                        data['name'].toString(), data['color'] as Color),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(children: [
+                for (var data in datum.skip(3))
                   buildScrollToIndexes(data['picture'].toString(),
                       data['name'].toString(), data['color'] as Color),
-              ],
-            ),
-          ),
-          Container(
-            child: Column(children: [
-              for (var data in datum.skip(3))
-                buildScrollToIndexes(data['picture'].toString(),
-                    data['name'].toString(), data['color'] as Color),
-            ]),
-          )
-        ]),
-      )
-    ]);
+              ]),
+            )
+          ]),
+        )
+      ]),
+    );
   }
 }
