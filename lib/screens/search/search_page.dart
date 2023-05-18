@@ -19,8 +19,9 @@ class SearchPage extends StatelessWidget {
               if (index == 1) {
                 return WinesType();
               }
-              if (index == 2)
-                return OurBestOffer();
+              if (index == 2) return OurBestOffer();
+              if (index == 3)
+                return WineMakingContries();
               else {
                 return Container();
               }
@@ -192,6 +193,51 @@ class OurBestOffer extends StatelessWidget {
               Text('Shop our best offers')
             ],
           )),
+    );
+  }
+}
+
+class WineMakingContries extends StatelessWidget {
+  const WineMakingContries({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: [
+        TextButton(
+          child: Text(
+            'Winemaking countries',
+            style: TextStyle(fontSize: 23),
+          ),
+          onPressed: () {},
+        ),
+        SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Container(
+                  color: Colors.red,
+                  width: 400,
+                  height: 300,
+                ),
+                Container(
+                  color: Colors.orange,
+                  width: 400,
+                  height: 300,
+                ),
+                Container(
+                  color: Colors.green,
+                  width: 400,
+                  height: 300,
+                ),
+                Container(
+                  color: Colors.blue,
+                  width: 400,
+                  height: 300,
+                )
+              ],
+            ))
+      ]),
     );
   }
 }
