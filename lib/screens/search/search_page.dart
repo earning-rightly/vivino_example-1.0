@@ -18,7 +18,11 @@ class SearchPage extends StatelessWidget {
               }
               if (index == 1) {
                 return WinesType();
-              } else {
+              }
+              if (index == 2) return OurBestOffer();
+              if (index == 3)
+                return WineMakingContries();
+              else {
                 return Container();
               }
             },
@@ -119,34 +123,121 @@ class WinesType extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      TextButton(
-          onPressed: () {},
-          child: Text(
-            "Shop wines by type",
-            style: TextStyle(color: Colors.black, fontSize: 20),
-          )),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(children: [
-          Container(
-            child: Column(
-              children: [
-                for (var data in datum.take(3))
+    return Container(
+      margin: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.black, width: 2))),
+      child: Column(children: [
+        TextButton(
+            onPressed: () {},
+            child: Text(
+              "Shop wines by type",
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            )),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(children: [
+            Container(
+              child: Column(
+                children: [
+                  for (var data in datum.take(3))
+                    buildScrollToIndexes(data['picture'].toString(),
+                        data['name'].toString(), data['color'] as Color),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(children: [
+                for (var data in datum.skip(3))
                   buildScrollToIndexes(data['picture'].toString(),
                       data['name'].toString(), data['color'] as Color),
-              ],
+              ]),
+            )
+          ]),
+        )
+      ]),
+    );
+  }
+}
+
+class OurBestOffer extends StatelessWidget {
+  const OurBestOffer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400,
+      margin: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.black, width: 2))),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
+            primary: Colors.white60,
+            onPrimary: Colors.black,
+            textStyle: TextStyle(fontSize: 23),
           ),
-          Container(
-            child: Column(children: [
-              for (var data in datum.skip(3))
-                buildScrollToIndexes(data['picture'].toString(),
-                    data['name'].toString(), data['color'] as Color),
-            ]),
-          )
-        ]),
-      )
-    ]);
+          onPressed: () {},
+          child: Row(
+            children: [
+              Image.asset(
+                'assets/search_page/our best offer/shop our best offer.png',
+                width: 100,
+                height: 100,
+              ),
+              SizedBox(width: 10),
+              Text('Shop our best offers')
+            ],
+          )),
+    );
+  }
+}
+
+class WineMakingContries extends StatelessWidget {
+  const WineMakingContries({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: [
+        TextButton(
+          child: Text(
+            'Winemaking countries',
+            style: TextStyle(fontSize: 23),
+          ),
+          onPressed: () {},
+        ),
+        SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                Container(
+                  color: Colors.red,
+                  width: 400,
+                  height: 300,
+                ),
+                Container(
+                  color: Colors.orange,
+                  width: 400,
+                  height: 300,
+                ),
+                Container(
+                  color: Colors.green,
+                  width: 400,
+                  height: 300,
+                ),
+                Container(
+                  color: Colors.blue,
+                  width: 400,
+                  height: 300,
+                )
+              ],
+            ))
+      ]),
+    );
   }
 }
