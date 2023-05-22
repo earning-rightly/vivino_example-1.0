@@ -10,3 +10,9 @@ var them = ThemeData(// 스타일을 모아놓을 공간, <style></style>과 유
         bodyText2: TextStyle(color: Colors.black)
     )
 );
+
+class SearchStyle {
+    Color buttonColor = Colors.white30;
+    Color buttonTextColor = Colors.black;
+}
+
